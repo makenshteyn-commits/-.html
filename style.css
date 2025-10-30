@@ -1,0 +1,32 @@
+body {
+    background-color: blue;
+}
+h1, h2, p, ul, ol, a {
+    font-size: 1.2rem;
+    color:aqua;
+    margin: 20px;
+    padding: 20px;
+}
+.content {
+    margin: 20px;
+}
+.content-left {
+    display: flex;
+    position: relative;
+    left: 20px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 30px;
+}
+.content-right {
+    display: flex;
+    position: relative;
+    right: 20px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 30px;
+}
+.picture {
+     width: 50%;
+     height: 50%;
+}
