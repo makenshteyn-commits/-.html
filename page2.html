@@ -4,8 +4,14 @@
   <meta charset="utf-8" />
   <title>Лабораторная 3</title>
   <style>
+    .container {
+      background-color: hsl(50 33% 25% / 0.75);
+    }
     .block {
       display: inline-block;
+      height=200px; 
+      width=200px;
+      background-color: #E0FFFF%;
     }
     .block-2 {
       display: flex; 
@@ -42,7 +48,7 @@
       width: 100px;
       height: 100px;
     }
-    img {
+    .cat {
       position: fixed;
       justify-content: end;
       height: 100px; 
@@ -55,7 +61,7 @@
  <a href="page2.html"><p style="text-align: right">Позиционирование элементов</p></a>
   </div>
   <h1>Горизонтальное позиционирование</h1>
-  <div class="container" style="background-color: hsl(50 33% 25% / 0.75)"><div class="block" height=200px; width=200px;  style="background-color: #E0FFFF%"><img src="https://img.icons8.com/?size=100&id=120341&format=png&color=000000Э/"></div></div>
+  <div class="container"><div class="block"><img src="https://img.icons8.com/?size=100&id=120341&format=png&color=000000Э/"></div></div>
   <h1>Вертикальное позиционирование</h1>
   <div class="container-2" style="background-color: #7FFFD4"><div class="block-2" height=200px; width=200px; style="background-color: #87CEFA"></div></div>
   <h1>Работа с flex</h1>
@@ -65,6 +71,6 @@
   <div class="first"></div>
   <div class="second"></div>
   <div class="third"></div>
-  <img href="https://freecatphotoapp.com" src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back."></a>
+  <img href="https://freecatphotoapp.com" src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back." class="cat"></a>
 </body>
 </html>
