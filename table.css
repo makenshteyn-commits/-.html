@@ -27,8 +27,33 @@
 	border-top: 3px solid #fff;
 	border-bottom: 3px solid #fff;
 	font-size: 15px;
-  background: greenyellow;
 }
 .table tbody tr:nth-child(even){
-	background: #f8f8f8!important;
+	background: #f8f8f8;
+}
+.table tbody tr:nth-child(1) {
+    background: greenyellow;
+}
+.table tbody tr:nth-child(2) {
+    background: blue;
+}
+.table tbody tr:nth-child(3) {
+    background: blueviolet;
+}.table tbody tr:nth-child(4) {
+    background: violet;
+}
+.table tbody tr:nth-child(5) {
+    background: red;
+}
+.table tbody tr:nth-child(6) {
+    background: pink;
+}
+.table tbody tr:nth-child(7) {
+    background: brown;
+}
+.table tbody tr:nth-child(8) {
+    background: yellow;
+}
+.table tbody tr:nth-child(8) {
+    background: orange;
 }
