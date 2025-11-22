@@ -102,3 +102,28 @@ p {
     width: 100px;
     right: 0;
     bottom: 0;
+    }
+.carousel-inner {
+  display: flex;
+  justify-content: space-around;
+}
+
+.carousel-item {
+  height: 300px;
+  width: auto;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+}
+
+article {
+  width: 33%;
+  margin: 10px 15px;
+}
+article img {
+  margin: 10px;
+}
+
+
