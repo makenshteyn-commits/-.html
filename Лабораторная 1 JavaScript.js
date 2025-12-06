@@ -1,6 +1,6 @@
 function findAutomorphs(a, b) {
     if (a > b || !Number.isInteger(a) || !Number.isInteger(b)) {
-        console.log("Ошибка: a и b должны быть целыми, a ≤ b.");
+        console.log("Неверно: a ≤ b.");
         return [];
     }
 
