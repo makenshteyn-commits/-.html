@@ -1,31 +1,58 @@
 //Вариант 4.
-def product_between_min_max(arr):
-    if not arr:
-        return 0
+function productBetweenMinMax(arr) {
+
+    if (arr.length <= 1) {
+        return 0; 
+    }
+
+    let minIndex = 0;
+    let maxIndex = 0;
     
-    min_index = arr.index(min(arr))
-    max_index = arr.index(max(arr))
-    
-    start = min(min_index, max_index) + 1
-    end = max(min_index, max_index)
-    
-    product = 1
-    for i in range(start, end):
-        product *= arr[i]
-    
-    return product
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] < arr[minIndex]) {
+            minIndex = i;
+        }
+        if (arr[i] > arr[maxIndex]) {
+            maxIndex = i;
+        }
+    }
+
+    const start = Math.min(minIndex, maxIndex) + 1;
+    const end = Math.max(minIndex, maxIndex);
+
+    if (start >= end) {
+        return 1; 
+    }
+
+    let product = 1;
+    for (let i = start; i < end; i++) {
+        product *= arr[i];
+    }
+
+    return product;
+}
 
 //Вариант 5.
-def sum_negative_columns(matrix):
-    if not matrix or not matrix:
-        return 
-    
-    num_cols = len(matrix)
-    result =  * num_cols 
-    
-    for col in range(num_cols):
-        for row in range(len(matrix)):
-            if matrix[row][col] < 0:
-                result[col] += matrix[row][col]
-    
-    return result
+function sumNegativeElementsByColumn(matrix) {
+    if (!matrix || matrix.length === 0) {
+        return [];
+    }
+
+    const numRows = matrix.length;
+    const numCols = matrix[0].length;
+    const result = new Array(numCols).fill(0);
+
+    for (let j = 0; j < numCols; j++) {
+        let columnSum = 0;
+
+        for (let i = 0; i < numRows; i++) {
+            if (matrix[i][j] !== undefined && matrix[i][j] < 0) {
+                columnSum += matrix[i][j];
+            }
+        }
+
+        result[j] = columnSum;
+    }
+
+    return result;
+}
