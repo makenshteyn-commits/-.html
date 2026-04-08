@@ -1,0 +1,63 @@
+import './style.css';
+
+let tasks = [];
+let nextId = 1;
+
+
+function renderTask(task) {
+  const listItem = $('<li class="todo-item"></li>');
+  listItem.data('id', task.id);
+
+  const taskText = $('<span class="task-text"></span>').text(task.text);
+  if (task.completed) {
+    listItem.addClass('completed');
+  }
+
+  const renameBtn = $('<button class="rename-btn">✏</button>');
+  renameBtn.on('click', (e) => {
+    e.stopPropagation();
+    const newName = prompt('Введите новое название задачи:', task.text);
+    if (newName && newName.trim() !== '') {
+      task.text = newName.trim();
+      taskText.text(task.text);
+    }
+  });
+
+  const deleteBtn = $('<button class="delete-btn">❌</button>');
+  deleteBtn.on('click', (e) => {
+    e.stopPropagation(); 
+    tasks = tasks.filter(t => t.id !== task.id);
+    listItem.remove();
+  });
+
+  listItem.on('click', () => {
+    task.completed = !task.completed;
+    if (task.completed) {
+      listItem.addClass('completed');
+    } else {
+      listItem.removeClass('completed');
+    }
+  });
+
+  listItem.append(taskText, renameBtn, deleteBtn);
+  $('#todo-list').append(listItem);
+}
+
+function addTask() {
+  const newTaskText = $('#new-task').val().trim();
+  if (newTaskText !== '') {
+    const newTask = {
+      id: nextId++,
+      text: newTaskText,
+      completed: false
+    };
+    tasks.push(newTask);
+    renderTask(newTask);
+    $('#new-task').val('');
+  }
+}
+
+$('form').on('submit', (e) => {
+  e.preventDefault();
+  addTask();
+});
