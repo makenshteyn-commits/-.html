@@ -1,0 +1,72 @@
+<div id="app"></div>
+
+<script src="https://unpkg.com/vue@3.5.18/dist/vue.global.js"></script>
+<template>
+  <div id="app">
+    <h1>УЧЕТ РАСХОДОВ</h1>
+
+    <div class="summary">
+      <span>Баланс: {{ balance }}</span>
+      <span>Расходы: {{ Math.abs(totalExpense) }}</span>
+      <span>Доходы: {{ totalIncome }}</span>
+    </div>
+
+    <p v-if="history.length === 0">Вы не совершали финансовых операций</p>
+    <ul v-else class="history-list">
+      <li v-for="item in history" :key="item.id">
+        {{ item.text }}
+        <span>{{ item.amount > 0 ? '+' + item.amount : item.amount }}</span>
+      </li>
+    </ul>
+
+    <form @submit.prevent="addTransaction">
+      <input
+        v-model.trim="title"
+        type="text"
+        placeholder="Введите название"
+      />
+      <input
+        v-model.number="amount"
+        type="number"
+        placeholder="Введите сумму"
+      />
+      <button type="submit">Добавить</button>
+    </form>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue'
+
+const title = ref('')
+const amount = ref(0)
+const history = ref([])
+
+const totalIncome = computed(() =>
+  history.value
+    .filter(item => item.amount > 0)
+    .reduce((sum, item) => sum + item.amount, 0)
+)
+
+const totalExpense = computed(() =>
+  history.value
+    .filter(item => item.amount < 0)
+    .reduce((sum, item) => sum + item.amount, 0)
+)
+
+const balance = computed(() => totalIncome.value + totalExpense.value)
+
+function addTransaction() {
+  if (title.value && !isNaN(amount.value)) {
+    history.value.push({
+      text: title.value,
+      amount: amount.value,
+      id: Date.now()
+    })
+    title.value = ''
+    amount.value = 0
+  }
+}
+</script>
+/* Простые стили можно добавить по желанию */
+</style>
