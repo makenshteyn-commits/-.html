@@ -68,5 +68,3 @@ function addTransaction() {
   }
 }
 </script>
-/* Простые стили можно добавить по желанию */
-</style>
