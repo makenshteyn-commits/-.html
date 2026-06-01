@@ -1,0 +1,200 @@
+<!-- Задание 1 -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анкета</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+        }
+        .form-container {
+            background-color: #fff;
+            width: 100%;
+            max-width: 500px;
+            padding: 20px 30px;
+            border: 1px solid #ddd;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .hint {
+            display: block;
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="url"] {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .add-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #4285f4;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .add-link:hover {
+            text-decoration: underline;
+        }
+        .submit-btn {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+        }
+        .submit-btn:hover {
+            background-color: #3b78e7;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <form action="#">
+        <div class="form-group">
+            <label for="name">Имя</label>
+            <span class="hint">Полное имя, как оно указано в статьях</span>
+            <input type="text" id="name" name="name">
+            <a href="#" class="add-link">+ Добавить имя</a>
+        </div>
+        <div class="form-group">
+            <label for="work">Место работы</label>
+            <span class="hint">Пример: профессор математики, МГУ им. Ломоносова</span>
+            <input type="text" id="work" name="work">
+        </div>
+        <div class="form-group">
+            <label for="email">Электронная почта для подтверждения</label>
+            <span class="hint">Пример: kolmogorov@msu.ru</span>
+            <input type="email" id="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="interests">Области интересов</label>
+            <span class="hint">Пример: топология, турбулентность, функциональный анализ</span>
+            <input type="text" id="interests" name="interests">
+        </div>
+        <div class="form-group">
+            <label for="website">Личная страница (необязательно)</label>
+            <span class="hint">Пример: http://www.msu.ru/~kolmogorov</span>
+            <input type="url" id="website" name="website">
+        </div>
+        <button type="submit" class="submit-btn">ДАЛЕЕ</button>
+    </form>
+</div>
+</body>
+</html>
+// Задание 2
+function findMaxSumBlock(str) {
+    const blocks = str.split('0').filter(block => block.length > 0);
+
+    if (blocks.length === 0) {
+        return null;
+    }
+
+    let maxSum = -1;
+    let maxBlock = '';
+
+    for (const block of blocks) {
+        const sum = block.split('').reduce((acc, digit) => acc + Number(digit), 0);
+
+        if (sum > maxSum) {
+            maxSum = sum;
+            maxBlock = block;
+        }
+    }
+
+    return { block: maxBlock, sum: maxSum };
+}
+<!-- Задание 3 -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цветные прямоугольники Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .color-block {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            display: inline-block;
+            cursor: pointer;
+            border: 2px solid #333;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <div
+                v-for="(block, index) in blocks"
+                :key="index"
+                class="color-block"
+                :style="{ backgroundColor: block.color }"
+                @click="changeColor(index)"
+            ></div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    blocks: [
+                        { color: 'red' },
+                        { color: 'green' },
+                        { color: 'blue' },
+                        { color: 'yellow' },
+                        { color: 'purple' }
+                    ]
+                };
+            },
+            methods: {
+                changeColor(index) {
+                    const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+                    this.blocks[index].color = randomColor;
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
